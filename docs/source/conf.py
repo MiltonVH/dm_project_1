@@ -72,9 +72,9 @@ html_static_path = ['_static']
 
 html_theme_options = {
     # 'home_page_in_toc': True,
-    'use_download_button': False,
+    'use_download_button': True,
     #"repository_url": "https://github.com/MiltonVH",
-    #"use_repository_button": True,
+    "use_repository_button": True,
     # "use_edit_page_button": True,
     # "use_fullscreen_button": True,
     'collapse_navigation': True,

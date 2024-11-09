@@ -12,7 +12,7 @@ El conjunto de datos asignado para este trabajo corresponde a los [resultados de
 Se presenta a continuación la sección del informe que contine la aplicación e interpretación de los algorimos sobre el conjunto de datos así junto las propuestas elaboradas.  
 
 ```{toctree}
-:caption: Informe de proyecto
+:caption:
 :maxdepth: 2
 modules/informe.md
 ```
@@ -21,7 +21,7 @@ modules/informe.md
 Esta sección contiene información técnica sobre las librerías utilizadas y el entorno de trabajo, para poder ejecutarlo.
 
 ```{toctree}
-:caption: Documentación
+:caption:
 :maxdepth: 2
 modules/documentation.md
 ```
