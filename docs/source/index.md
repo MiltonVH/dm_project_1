@@ -7,7 +7,7 @@ Esta documentación fue elaborada como material de apoyo para la unidad de robó
 Conceptos fundamentales sobre la robótica y la robótica industrial.
 
 ```{toctree}
-:caption: Introducción
+:caption: Informe de proyecto
 :maxdepth: 2
 modules/informe.md
 ```
@@ -16,7 +16,7 @@ modules/informe.md
 Descripción y uso del software de simulación para la estación robot; sintaxis así como estructura de un programa en Melfa Basic; configuración pantalla táctil industrial mediante GT Designer.
 
 ```{toctree}
-:caption: Programación
+:caption: Documentación
 :maxdepth: 2
 modules/documentation.md
 ```

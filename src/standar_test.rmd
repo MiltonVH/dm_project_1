@@ -1,0 +1,13 @@
+
+
+```{r}
+library(here)
+library(haven)
+library(arules)
+library(ggplot2)
+```
+
+```{r}
+clc <- function() shell("cls")
+```
+
