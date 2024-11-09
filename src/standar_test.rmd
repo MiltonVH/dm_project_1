@@ -1,4 +1,16 @@
 
+# Introducción a la minería de datos - Proyecto 1
+
+Se define esta función para poder limpiar la terminal de R (radian) utilizada en el entorno de trabajo.
+
+```{r}
+clc <- function() shell("cls")
+```
+
+
+## Librerías 
+
+Carga de las librerías utilizadas para el proyecto.
 
 ```{r}
 library(here)
@@ -7,7 +19,58 @@ library(arules)
 library(ggplot2)
 ```
 
+## Carga del conjunto de datos 
+
+Carga del archivo .sav en el que se encuentra los datos utilizando el paquete :`here` para poder emplear un *path* relativo a la carpeta del proyecto. 
+
 ```{r}
-clc <- function() shell("cls")
+data_path <- here("p1_data", "2023-Grad-Internet.sav")
+dataset <- read_sav(data_path)
 ```
+
+## Exploración inicial 
+
+```{r}
+dim(dataset)
+header <- t(head(dataset, n = 1))
+View(header)
+```
+
+```{r}
+graduados <- as.data.frame(as.matrix(dataset))
+graduados <- subset(graduados, Nivel == "Diversificado")
+```
+
+
+```{r}
+data_apriori <- graduados[, c("Cod_Region",
+                              "Cod_Sector",
+                              "CC_Familia_Automovil",
+                              "Edad_RECO",
+                              "Sexo_RECO",
+                              "Cod_Area",
+                              "Fm_Grado_Alcanzo_Papa_RECO",
+                              "Fm_Grado_Alcanzo_Mama_RECO",
+                              "Logro_Mate",
+                              "Logro_Lect")]
+
+#data_apriori <- subset(data_apriori,
+#                       Desempeño_Mate %in% c(3, 4) |
+#                         Desempeño_Lect %in% c(3, 4))
+
+
+data_apriori <- subset(data_apriori, Logro_Mate == 1 | Logro_Lect == 1)
+```
+
+## Uso del algoritmo apriori
+
+```{r}
+reglas <- apriori(data_apriori,
+                  parameter = list(support = 0.2, confidence = 0.5))
+
+reglas <- as(reglas, "data.frame")
+View(reglas)
+```
+
+
 
