@@ -6,26 +6,22 @@ Se solicito al estudiante aplicar los algoritmos *Apriori* y *FP-growth* para en
 
 El conjunto de datos asignado para este trabajo corresponde a los [resultados de las evaluaciones](https://edu.mineduc.gob.gt/digeduca/?p=resultadosevaluacionesMain.asp) que realizó el Miniesterio de Educación de Guatemala a los granduandos de diversificado al finalizar el ciclo escolar  del año 2023. 
 
-
-## Informe de proyecto 
-
+## Indice 
 Se presenta a continuación la sección del informe que contine la aplicación e interpretación de los algorimos sobre el conjunto de datos así junto las propuestas elaboradas.  
 
 ```{toctree}
-:caption:
+:caption: Proyecto
 :maxdepth: 2
 modules/informe.md
+modules/propuesta.md
 ```
-## Documentación
-
 Esta sección contiene información técnica sobre las librerías utilizadas y el entorno de trabajo, para poder ejecutarlo.
 
 ```{toctree}
-:caption:
+:caption: Documentación
 :maxdepth: 2
 modules/documentation.md
 ```
-`` 
 
 ## Referencias
 

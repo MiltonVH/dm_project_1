@@ -79,7 +79,7 @@ html_theme_options = {
     # "use_fullscreen_button": True,
     'collapse_navigation': True,
     #'sticky_navigation': True,
-    "show_navbar_depth": 2,
+    "show_navbar_depth": 3,
     # 'titles_only': False,
     "show_toc_level": 2
 }
