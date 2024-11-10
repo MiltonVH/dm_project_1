@@ -16,7 +16,6 @@ master_doc = 'index'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-extensions = []
 
 extensions = [
     'myst_parser',  # extensión para poder usar MyST y  MARKDONW
@@ -30,7 +29,8 @@ extensions = [
     # 'sphinx.ext.autosummary', # solamente si se la quiere usar
      'sphinx.ext.viewcode',
     'sphinx_copybutton',
-    "sphinx.ext.githubpages",
+    'sphinxcontrib.bibtex',
+    'sphinx.ext.githubpages',
 ]
 
 # MyST configuration ----------------------------------------------------------
@@ -53,7 +53,9 @@ myst_enable_extensions = [
 
 #panels_add_bootstrap_css = False
 
-
+bibtex_bibfiles = ['modules/refs.bib']
+bibtex_default_style = 'unsrt'
+bibtex_encoding = 'latin'
 templates_path = ['_templates']
 exclude_patterns = []
 
@@ -77,9 +79,9 @@ html_theme_options = {
     "use_repository_button": True,
     # "use_edit_page_button": True,
     # "use_fullscreen_button": True,
-    'collapse_navigation': True,
+    #'collapse_navigation': False,
     #'sticky_navigation': True,
-    "show_navbar_depth": 3,
+    "show_navbar_depth": 2,
     # 'titles_only': False,
     "show_toc_level": 2
 }

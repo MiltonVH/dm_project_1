@@ -7,14 +7,13 @@ Se define esta función para poder limpiar la terminal de R (radian) utilizada e
 clc <- function() shell("cls")
 ```
 
-
 ## Librerías 
 
 Carga de las librerías utilizadas para el proyecto.
 
 ```{r}
 library(here)
-library(haven)
+library(foreign)
 library(arules)
 library(ggplot2)
 ```
@@ -24,26 +23,33 @@ library(ggplot2)
 Carga del archivo .sav en el que se encuentra los datos utilizando el paquete :`here` para poder emplear un *path* relativo a la carpeta del proyecto. 
 
 ```{r}
+# Carga del conjunto de datos
+
 data_path <- here("p1_data", "2023-Grad-Internet.sav")
-dataset <- read_sav(data_path)
+graduados <- read.spss(data_path, to.data.frame = TRUE)
+
+# Limpieza inicial del conjunto de datos
+graduados$Corr_Año <- NULL
+graduados$Cod_Muni <- NULL
+graduados$Nivel <- NULL
+graduados$Cod_Nivel <-NULL
+graduados <- graduados[graduados$Cod_Jornada != "99",]
+graduados$Cod_Jornada <- factor(graduados$Cod_Jornada)
+
+
 ```
 
 ## Exploración inicial 
 
 ```{r}
-dim(dataset)
-header <- t(head(dataset, n = 1))
+dim(graduados)
+header <- t(head(graduados, n = 1))
 View(header)
 ```
 
 ```{r}
-graduados <- as.data.frame(as.matrix(dataset))
-graduados <- subset(graduados, Nivel == "Diversificado")
-```
-
-
-```{r}
 data_apriori <- graduados[, c("Cod_Region",
+                              "Cod_Jornada",
                               "Cod_Sector",
                               "CC_Familia_Automovil",
                               "Edad_RECO",
@@ -54,13 +60,12 @@ data_apriori <- graduados[, c("Cod_Region",
                               "Logro_Mate",
                               "Logro_Lect")]
 
-#data_apriori <- subset(data_apriori,
-#                       Desempeño_Mate %in% c(3, 4) |
-#                         Desempeño_Lect %in% c(3, 4))
 
+data_apriori <- data_apriori[data_apriori$Logro_Mate == "Logro" |
+                              data_apriori$Logro_Lect== "Logro",]
 
-data_apriori <- subset(data_apriori, Logro_Mate == 1 | Logro_Lect == 1)
 ```
+
 
 ## Uso del algoritmo apriori
 

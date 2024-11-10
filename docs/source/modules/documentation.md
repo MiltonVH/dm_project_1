@@ -1,30 +1,5 @@
 # Entorno de trabajo
 
 
-## Title 2
-
-```{image} ../_static/img/display_controller.jpg
-   :align: center
-   :width: 50%
-   :alt: description
-```
-
-## Title 3
-
-```{image} ../_static/img/teach.jpg
-   :align: center
-   :width: 70%
-   :alt: description
-```
-
-## Title 4
-
-Modo de operación en el cual la posición del robot es ajustada manualmente por el operario. Existen 6 diferentes modos de operación en con JOG:
-
-- JOINT
-- TOOL
-- XYZ
-- 3-XYZ
-- CYLNDER
-- WORK
+Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
 
