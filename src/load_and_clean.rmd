@@ -1,0 +1,69 @@
+# Tratamiento de datos
+
+## Librerías 
+
+Carga de las librerías utilizadas para el proyecto.
+
+```{r}
+library(here)
+library(foreign)
+library(dplyr)
+
+clc <- function() shell("cls")
+```
+
+## Carga del conjunto de datos 
+
+Carga del archivo .sav en el que se encuentra los datos utilizando el paquete :`here` para poder emplear un *path* relativo a la carpeta del proyecto. 
+
+```{r}
+# Intercarmbiar path en función SPSS
+
+path_1 <- here("p1_data", "2023-Grad-Internet.sav")
+path_2 <- here("p1_data", "2022-Grad-Internet.sav")
+path_3 <- here("p1_data", "2019 - Grad Internet.sav")
+graduados <- read.spss(path_1, to.data.frame = TRUE)
+selector <- graduados$Corr_Año[1]
+```
+
+Eliminación de algunas variables innecesarias y redundantes, algunas tambien tiene valores faltantas o muestran advertencias al momento carga el archivo.
+
+```{r}
+# Limpieza inicial del conjunto de datos
+graduados <- graduados %>% filter(Cod_Nivel == "Diversificado")
+graduados <- graduados %>% mutate(across(where(is.character), trimws))
+
+graduados$Corr_Año <- NULL
+graduados$Cod_Muni <- NULL
+graduados$Nivel <- NULL
+graduados$Cod_Nivel <- NULL
+graduados$Cod_Jornada <- NULL
+graduados$Cod_Distrito <- NULL
+
+if (selector == 2023) {
+  graduados$Rama_Abstracta[graduados$Rama_Abstracta == ""] <- "Técnico"
+  graduados$Rama_Abstracta <- factor(graduados$Rama_Abstracta)
+
+  graduados$Jornada[graduados$Jornada == ""] <- NA
+  graduados$Jornada <- factor(graduados$Jornada)
+
+} else if (selector == 2022) {
+  graduados$Generalidades_54_Reco <- NULL
+  graduados$Jornada[graduados$Jornada == ""] <- NA
+  graduados$Jornada[graduados$Jornada == "99"] <- "Sin Jornanda"
+  graduados$Jornada <- factor(graduados$Jornada)
+} else if (selector == 2019) {
+  graduados$Indicadores <- NULL
+  graduados$Cod_Indicadores <- NULL
+  graduados$Jornada <- factor(graduados$Jornada)
+}
+```
+
+## Serialización de los datos
+
+Para mejorar la velocidad de carga del conjunto de datos los data frames se guardan como objetos serialiados. 
+```{r}
+file_name <- paste("g", as.character(selector), ".Rds", sep = "")
+path_file <- here("p1_data", file_name)
+saveRDS(graduados, path_file)
+```

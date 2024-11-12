@@ -1,0 +1,139 @@
+# Tratamiento de datos
+
+## Limpiar entonrno
+Limpiar por consola de todo el entorno (variables, datos, librerías).
+
+```{r}
+rm(list = ls())
+```
+
+## Librerías  y CLC
+Carga de las librerías utilizadas para el proyecto.
+
+```{r}
+library(here)
+library(dplyr)
+library(ggplot2)
+library(patchwork)
+
+clc <- function() shell("cls")
+```
+
+
+## Carga de datos serializados 
+
+```{r}
+# Indicar año 2023, 2022 o 2019
+year <- "2019"
+path_file <- here("p1_data", paste("g", year, ".Rds", sep = ""))
+graduados <- readRDS(path_file)
+```
+
+Generación de data frame con la lista de variables disponibles en el conjunto de datos. 
+```{r}
+header <- t(head(graduados, n = 1))
+View(header)
+```
+
+
+```{r}
+
+vars <- c("Logro_Mate", "Desempeño_Mate")
+
+df <- graduados %>% select(all_of(vars)) %>% filter(!is.na(Logro_Mate))
+df <- df %>%
+  group_by(Logro_Mate, Desempeño_Mate) %>%
+  summarise(n = n(),  .groups = "drop_last") %>%
+  mutate(freq = (n / nrow(df)))
+
+glabels_1 <- lapply(df$freq * 100, function(x) sprintf("%.1f", x))
+
+fig1 <- (ggplot(df, aes(x = Desempeño_Mate, y = freq)) +
+           geom_col(aes(fill = Logro_Mate)) +
+           scale_y_continuous(labels = scales::percent) +
+           geom_text(aes(label = glabels_1), vjust = 1.1) +
+           labs(fill = "Logró Mate", x = "", y = "") +
+           ggtitle("Desempeño en Matemáticas") +
+           theme(axis.text.x = element_text(angle = 90,
+                                            vjust = 0.25,
+                                            hjust = 1)))
+
+vars <- c("Logro_Lect", "Desempeño_Lect")
+df <- graduados %>% select(all_of(vars)) %>% filter(!is.na(Logro_Lect))
+df <- df %>%
+  group_by(Logro_Lect, Desempeño_Lect) %>%
+  summarise(n = n(),  .groups = "drop_last") %>%
+  mutate(freq = (n / nrow(df)))
+
+glabels_2 <- lapply(df$freq * 100, function(x) sprintf("%.1f", x))
+
+fig2 <- (ggplot(df, aes(x = Desempeño_Lect, y = freq)) +
+           geom_col(aes(fill = Logro_Lect)) +
+           scale_y_continuous(labels = scales::percent) +
+           geom_text(aes(label = glabels_2), vjust = 1.1) +
+           labs(fill = "Logró Lect", x = "", y = "") +
+           ggtitle("Desempeño en Lectura") +
+           theme(axis.text.x = element_text(angle = 90,
+                                            vjust = 0.25,
+                                            hjust = 1)))
+```
+
+## Generación de gráfico 
+
+```{r}
+g <-  fig1 + fig2
+path_file <- here("src/graphs", paste("g", year, ".png", sep = ""))
+ggsave(path_file,
+       plot = g,
+       width = 8,
+       height = 4,
+       units = "in")
+```
+
+## Cantidad de alumnos 
+
+```{r}
+if (year == 2022) {
+  print(paste("Total estudiantes:", dim(graduados)[1]))
+  print(paste("Evaluaciones mate:",
+              dim(graduados %>% filter(!is.na(Logro_Mate)))[1]))
+  print(paste("Evaluaciones lect:",
+              dim(graduados %>% filter(!is.na(Logro_Lect)))[1]))
+} else {
+  print(paste("Total estudiates:", dim(graduados)[1]))
+}
+```
+
+## Sumario de variables de interes :
+```{r}
+vars <- c("Logro_Mate",
+          "Logro_Lect",
+          "Desempeño_Mate",
+          "Desempeño_Lect",
+          "Cod_Region",
+          "Jornada",
+          "Cod_Sector",
+          "CC_Familia_Automovil",
+          "Edad_RECO",
+          "Sexo_RECO",
+          "Cod_Area",
+          "Sc_Servicio_Internet",
+          "Tipo_Eval")
+
+if (year == 2022) {
+  vars <- replace(vars, vars == "Cod_Sector", "sector")
+  vars <- replace(vars, vars == "Edad_RECO", "Edad_Reco")
+  vars <- replace(vars, vars == "Sexo_RECO", "Edad_Reco")
+}
+if (year == 2019) {
+  vars <- setdiff(vars, "Cod_Sector")
+  vars <- setdiff(vars, "Tipo_Eval")
+  vars <- replace(vars, vars == "Edad_RECO", "Edad_Reco")
+  vars <- replace(vars, vars == "Sexo_RECO", "Edad_Reco")
+  vars <- replace(vars, vars == "Sc_Servicio_Internet", "CC_Servicio_Internet")
+}
+
+df <- graduados %>% select(all_of(vars)) %>% filter(!is.na(Logro_Lect))
+summary(df)
+```
+

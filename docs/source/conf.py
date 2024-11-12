@@ -55,7 +55,7 @@ myst_enable_extensions = [
 
 bibtex_bibfiles = ['modules/refs.bib']
 bibtex_default_style = 'unsrt'
-bibtex_encoding = 'latin'
+bibtex_encoding = 'UTF-8'
 templates_path = ['_templates']
 exclude_patterns = []
 
