@@ -22,7 +22,7 @@ Carga del archivo .sav en el que se encuentra los datos utilizando el paquete :`
 path_1 <- here("p1_data", "2023-Grad-Internet.sav")
 path_2 <- here("p1_data", "2022-Grad-Internet.sav")
 path_3 <- here("p1_data", "2019 - Grad Internet.sav")
-graduados <- read.spss(path_1, to.data.frame = TRUE)
+graduados <- read.spss(path_2, to.data.frame = TRUE)
 selector <- graduados$Corr_Año[1]
 ```
 
@@ -47,11 +47,18 @@ if (selector == 2023) {
   graduados$Jornada[graduados$Jornada == ""] <- NA
   graduados$Jornada <- factor(graduados$Jornada)
 
+
 } else if (selector == 2022) {
   graduados$Generalidades_54_Reco <- NULL
   graduados$Jornada[graduados$Jornada == ""] <- NA
   graduados$Jornada[graduados$Jornada == "99"] <- "Sin Jornanda"
   graduados$Jornada <- factor(graduados$Jornada)
+  graduados$Grad_Trabajar <- factor(graduados$Grad_Trabajar)
+  levels(graduados$Grad_Trabajar) <- c("No", "Si")
+  graduados$Grad_Seguir_Estudiando <- factor(graduados$Grad_Seguir_Estudiando)
+  levels(graduados$Grad_Seguir_Estudiando) <- c("No", "Si")
+
+
 } else if (selector == 2019) {
   graduados$Indicadores <- NULL
   graduados$Cod_Indicadores <- NULL

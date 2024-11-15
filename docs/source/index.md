@@ -1,4 +1,4 @@
-# Introducción a la minería de datos - P1
+# Proyecto 1
 
 Esta documentación corresponde al primer proyecto del curso **Introducción a la Minería de Datos** de la *Maestría en Ingeniería para la Industria con Especialización en Ciencia de la Computación* impartida en la Facultad de Ingeniería de la Universidad de San Carlos de Guatemala, durante el cuarto trimestre del año 2024. 
 
@@ -12,8 +12,9 @@ Se presenta a continuación la sección del informe que contiene la aplicación 
 ```{toctree}
 :caption: Informe de proyecto
 :maxdepth: 2
-modules/dataset.md
+modules/bexploration.md
 modules/reglas.md
+modules/kmeans.md
 modules/propuesta.md
 ```
 ## Documentación

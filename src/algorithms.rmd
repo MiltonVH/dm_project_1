@@ -1,0 +1,225 @@
+
+# Reglas de asociación con apriori
+
+## Limpiar entonrno
+Limpiar por consola de todo el entorno (variables, datos, librerías).
+```{r}
+rm(list = ls())
+```
+
+## Librerías  y CLC
+Carga de las librerías utilizadas para el proyecto.
+```{r}
+library(here)
+library(dplyr)
+library(arules)
+library(ggplot2)
+
+clc <- function() shell("cls")
+```
+
+
+
+
+## Carga de datos serializados 
+```{r}
+# Indicar año 2023, 2022 o 2019
+year <- "2023"
+path_file <- here("p1_data", paste("g", year, ".Rds", sep = ""))
+graduados <- readRDS(path_file)
+```
+
+
+## Selección de variables de interes
+```{r}
+vars <- c("Logro_Mate",
+          "Logro_Lect",
+          "Ed_Asistio_Preprimaria",
+          "Sc_Electricidad",
+          "Desempeño_Mate",
+          "Desempeño_Lect",
+          "Cod_Depa",
+          "Lect_Periodos_Lectura_Semana",
+          "Mate_Periodos_Matematicas_Semana",
+          "Jornada",
+          "Ed_Trabaja_Actualmente",
+          "Cod_Sector",
+          "CC_Material_Predomina_En_Piso_Casa",
+          "Computadora",
+          "CC_Familia_Automovil",
+          "Edad_RECO",
+          "Sexo_RECO",
+          "Cod_Area",
+          "Sc_Servicio_Internet",
+          "Fm_Grado_Alcanzo_Papa_RECO",
+          "Fm_Grado_Alcanzo_Mama_RECO",
+          "Grad_Trabajar",
+          "Grad_Seguir_Estudiando",
+          "Lectura_Gusto",
+          "Identificacion_Etnica_RECO",
+          "Lect_Libros_Completos_Ha_Leido",
+          #"Informacion_Prueba",
+          # "Measure_Mate",
+          # "Measure_Lect",
+          "Tipo_Eval",
+          "Ed_Repitio_Algun_Grado")
+
+if (year == 2022) {
+  vars <- replace(vars, vars == "Cod_Sector", "sector")
+  vars <- replace(vars, vars == "Edad_RECO", "Edad_Reco")
+  vars <- replace(vars, vars == "Sexo_RECO", "Edad_Reco")
+}
+if (year == 2019) {
+  vars <- setdiff(vars, "Cod_Sector")
+  vars <- setdiff(vars, "Tipo_Eval")
+  vars <- setdiff(vars, "Lectura_Gusto")
+  vars <- setdiff(vars, "Grad_Trabajar")
+  vars <- setdiff(vars, "Grad_Seguir_Estudiando")
+  vars <- replace(vars, vars == "Edad_RECO", "Edad_Reco")
+  vars <- replace(vars, vars == "Sexo_RECO", "Edad_Reco")
+  vars <- replace(vars, vars == "Sc_Servicio_Internet",
+                  "CC_Servicio_Internet")
+  vars <- replace(vars, vars == "Ed_Repitio_Algun_Grado",
+                  "Ed_Repitio_Algun_Grado_Primaria")
+}
+```
+
+
+**Regla No. 1 y 2** con los datos del año 2023 sin segmentar y las variables indicadas en la sección de interés. 
+**Regla No. 3** segmentado por estudiantes que aprobaron lectura en el sector Oficial.
+**Regla No. 4** segmentado por estudiantes que aprobaron matematica en el sector Oficial.  
+```{r}
+df <- graduados %>% filter(Logro_Mate == "Logro" &
+                             Cod_Sector == "Oficial")
+df <- na.omit(df)
+df <- graduados %>% select(all_of(vars))
+
+df <- df %>% select(-Cod_Sector)
+
+```
+
+
+## Uso del algoritmo apriori
+
+```{r}
+reglas <- apriori(df,
+                  parameter = list(support = 0.2, confidence = 0.5))
+
+reglas <- as(reglas, "data.frame")
+partes <- split(reglas, cut(seq_len(nrow(reglas)), breaks = 8))
+
+```
+
+
+
+## Uso de FP-Growth
+
+```{r}
+reglas <- fim4r(df, method = "fpgrowth", target = "rules",
+                support = .2, confidence = .5)
+reglas <- as(reglas, "data.frame")
+partes <- split(reglas, cut(seq_len(nrows(reglas)), breaks = 10))
+
+```
+
+
+```{r}
+i <- 6
+aux <- partes[[i]] %>% filter(support > 0.35 & confidence > 0.8
+                              & confidence < 0.97)
+View(aux)
+```
+
+
+# Agrupación 
+
+## K - Means
+Mediante K - Means sin embargo este no es un algoritmo apropiado para este tipo de datos.
+
+```{r}
+df <- graduados %>% select(Measure_Mate, Measure_Lect,
+                           Cod_Depa, Desempeño_Mate, Desempeño_Lect)
+df <- na.omit(df)
+df <- df %>%
+  mutate(across(c("Cod_Depa", "Desempeño_Mate", "Desempeño_Lect"), as.integer))
+```
+
+```{r}
+cluster <- kmeans(df, centers = 5)
+```
+
+```{r}
+
+fig <- ggplot(df, aes(y = Measure_Mate, x = Measure_Lect,
+               color = as.factor(cluster$cluster))) +
+  geom_point() +
+  geom_point(data = as.data.frame(cluster$centers),
+             aes(x = Measure_Mate, y = Measure_Lect),
+             color = "black", size = 4, shape = 17) +
+  labs(title = "Hab. Mate vs Hab. Lect",
+       color = "Clusters") +
+  theme_minimal()
+
+path_file <- here("src/graphs/kmeans.png")
+ggsave(path_file,
+       plot = fig,
+       width = 4,
+       height = 4,
+       units = "in")
+```
+
+
+# K - Modes
+Se utilizo el algoritmo K - Modes que de forma simplificada es una versión del algoritmo K-Means pero para variables categoricas. 
+
+```{r}
+#detach("package:dplyr", unload = TRUE)
+library(klaR)
+library(patchwork)
+```
+
+Aplicación de algorimo junto con filtrado de los datos 
+```{r}
+df <- graduados[vars]
+df <- df[df$Logro_Mate=="Logro" | df$Logro_Lect=="Logro",]
+df <- na.omit(df)
+km <- kmodes(df, 5)
+```
+
+
+Visualización de grupos formador como data frame transpuesto
+```{r}
+View(t(km$modes))
+```
+
+Generación de grafico 
+```{r}
+modes_df <- as.data.frame(km$modes)
+fig1 <-(ggplot(modes_df, aes(x = Desempeño_Lect, fill = factor(seq_len(nrow(modes_df))))) +
+  geom_bar(stat = "count") +
+  labs(title = "Modos -> Lectura", fill="Clusters")+
+    theme(axis.text.x = element_text(angle = 90,vjust = 0.25, hjust = 1)))
+
+fig2 <-(ggplot(modes_df, aes(x = Desempeño_Mate, fill = factor(seq_len(nrow(modes_df))))) +
+  geom_bar(stat = "count") +
+  labs(title = "Modos -> Matemáticas", fill="Clusters")+ 
+    theme(axis.text.x = element_text(angle = 90, vjust = 0.25, hjust = 1)))
+
+fig <- fig2 + fig1
+```
+
+```{r}
+path_file <- here("src/graphs/kmodes_1.png")
+ggsave(path_file,
+       plot = fig,
+       width = 8,
+       height = 4,
+       units = "in")
+```
+
+
+
+```{r}
+library(dplyr)
+```
+

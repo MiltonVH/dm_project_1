@@ -6,10 +6,10 @@
 # -- Project information -----------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#project-information
 
-project = 'DM Project One'
-copyright = '2024, Milton Vásquez'
-author = 'Milton Vásquez'
-release = '1.0.0'
+project = 'Proyecto No. 1'
+#copyright = '2024, Milton Vásquez'
+author = 'Milton Rolando Vásquez Hernández'
+release = 'Introduccion a la minería de datos'
 
 master_doc = 'index'
 
@@ -134,6 +134,10 @@ latex_elements = {
     # The font size ('10pt', '11pt' or '12pt').
     #
     'pointsize': '11pt',
+    'classoptions': ',openany',    
+    # 'preamble': r'''
+    #     \def\UrlBreaks{\do\/\do-\do_}
+    # ''',
 }
 
 # Para incluir tabla de contenido en el alateral -----------------------------

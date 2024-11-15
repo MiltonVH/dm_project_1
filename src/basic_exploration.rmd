@@ -24,7 +24,7 @@ clc <- function() shell("cls")
 
 ```{r}
 # Indicar año 2023, 2022 o 2019
-year <- "2019"
+year <- "2023"
 path_file <- here("p1_data", paste("g", year, ".Rds", sep = ""))
 graduados <- readRDS(path_file)
 ```
@@ -100,7 +100,7 @@ if (year == 2022) {
   print(paste("Evaluaciones lect:",
               dim(graduados %>% filter(!is.na(Logro_Lect)))[1]))
 } else {
-  print(paste("Total estudiates:", dim(graduados)[1]))
+  print(paste("Total estudiantes:", dim(graduados)[1]))
 }
 ```
 
@@ -118,6 +118,9 @@ vars <- c("Logro_Mate",
           "Sexo_RECO",
           "Cod_Area",
           "Sc_Servicio_Internet",
+          "Fm_Grado_Alcanzo_Papa_RECO",
+          "Fm_Grado_Alcanzo_Mama_RECO",
+          "Ed_Repitio_Algun_Grado",
           "Tipo_Eval")
 
 if (year == 2022) {
@@ -130,10 +133,13 @@ if (year == 2019) {
   vars <- setdiff(vars, "Tipo_Eval")
   vars <- replace(vars, vars == "Edad_RECO", "Edad_Reco")
   vars <- replace(vars, vars == "Sexo_RECO", "Edad_Reco")
-  vars <- replace(vars, vars == "Sc_Servicio_Internet", "CC_Servicio_Internet")
+  vars <- replace(vars, vars == "Sc_Servicio_Internet",
+                  "CC_Servicio_Internet")
+  vars <- replace(vars, vars == "Ed_Repitio_Algun_Grado",
+                  "Ed_Repitio_Algun_Grado_Primaria")
 }
 
-df <- graduados %>% select(all_of(vars)) %>% filter(!is.na(Logro_Lect))
+df <- graduados %>% select(all_of(vars))
 summary(df)
 ```
 

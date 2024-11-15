@@ -1,0 +1,28 @@
+|Logro_Mate|No Logro|No Logro|No Logro|No Logro|No Logro|
+|Logro_Lect|Logro|No Logro|No Logro|Logro|No Logro|
+|Ed_Asistio_Preprimaria|Si|Si|Si|Si|Si|
+|Sc_Electricidad|Si|Si|Si|Si|Si|
+|Desempeño_Mate|DebeMejorar|Insatisfactorio|Insatisfactorio|Insatisfactorio|Insatisfactorio|
+|Desempeño_Lect|Excelente|Insatisfactorio|Insatisfactorio|Excelente|Insatisfactorio|
+|Cod_Depa|Ciudad Capital|Ciudad Capital|Guatemala|Guatemala|Ciudad Capital|
+|Lect_Periodos_Lectura_Semana|Ninguno|1 Período|Ninguno|Ninguno|Ninguno|
+|Mate_Periodos_Matematicas_Semana|Un periodo|Un periodo|Cinco periodos|Cinco periodos|Un periodo|
+|Jornada|Doble|SinJornada|Vespertina|Matutina|Vespertina|
+|Ed_Trabaja_Actualmente|Si|Si|No|No|Si|
+|Cod_Sector|Privado|Privado|Oficial|Privado|Privado|
+|CC_Material_Predomina_En_Piso_Casa|Torta de cemento|Piso cerámico|Piso cerámico|Piso cerámico|Tortadecemento|
+|Computadora|Si|Si|Si|Si|No|
+|CC_Familia_Automovil|No|Si|No|Si|Si|
+|Edad_RECO|18 años|Mayor de 20 años|17 años|17 años|18 años|
+|Sexo_RECO|Masculino|Masculino|Femenino|Femenino|Masculino|
+|Cod_Area|Urbana|Urbana|Urbana|Urbana|Urbana|
+|Sc_Servicio_Internet|Si|Si|Si|Si|No|
+|Fm_Grado_Alcanzo_Papa_RECO|Primaria|Primaria|Primaria|Diversificado|Primaria|
+|Fm_Grado_Alcanzo_Mama_RECO|Primaria|Primaria|Primaria|Diversificado|Primaria|
+|Grad_Trabajar|SI|SI|SI|SI|SI|
+|Grad_Seguir_Estudiando|SI|SI|SI|SI|NO|
+|Lectura_Gusto|Si|Si|Si|Si|Si|
+|Identificacion_Etnica_RECO|Ladino|Ladino|Ladino|Ladino|Ladino|
+|Lect_Libros_Completos_Ha_Leido|Dos libros|Un libro|Un libro|Dos libros|Un libro|
+|Tipo_Eval|Linea|Linea|Linea|Linea|Linea|
+|Ed_Repitio_Algun_Grado|No|Si|No|No|Si|

@@ -24,4 +24,5 @@ tasks.json
 
 ### directory ###
 docs/build/
+src/graphs/
 p1_data
