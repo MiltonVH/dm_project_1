@@ -1,0 +1,514 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Reglas de asociación</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=c96076fa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/reglas';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Agrupación" href="kmeans.html" />
+    <link rel="prev" title="Exploración inicial" href="bexploration.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=" - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=" - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Informe de proyecto</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bexploration.html">Exploración inicial</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Reglas de asociación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeans.html">Agrupación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propuesta.html">Propuestas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Entorno de trabajo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Entorno de trabajo</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/MiltonVH/dm_project_1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modules/reglas.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Reglas de asociación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apriori">Apriori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fp-growth">FP-Growth</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="reglas-de-asociacion">
+<h1>Reglas de asociación<a class="headerlink" href="#reglas-de-asociacion" title="Link to this heading">#</a></h1>
+<p>Dado que la mayoría de los estudiantes fallaron las evaluaciones, se buscaron reglas de asociación primero con el los datos sin segmentar y luego enfocándose en los estudies que obtuviera buenos resultados para buscar asociaciones que explique su existo en la prueba.</p>
+<section id="apriori">
+<h2>Apriori<a class="headerlink" href="#apriori" title="Link to this heading">#</a></h2>
+<p>Al buscar reglas de asociación con los datos sin segmentarlos, debido a la diversidad y cantidad de información, las reglas con mayor soporte que encuentra el algoritmo son simples y que se podrían buscar por otros medios. Aquellas reglas más complejas que asocian varias variables tiene poco soporte pero aún así aportan algo de información sobre los datos.</p>
+<p>Debido la mayoría de los estudiantes no lograron buenos resultados en ambas pruebas, el algoritmo sin filtrar, asocia distintas variables con un resultado negativo en matemáticas más que con resultado negativo en lectura dado que los estudiantes fallan mas frecuentemente la prueba de matemática que la de lectura.</p>
+<ul>
+<li><p><strong>Regla 1</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Año 2023</span>
+<span class="p">{</span><span class="n">Sc_Electricidad</span><span class="o">=</span><span class="n">Si</span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Cod_Area</span><span class="o">=</span><span class="n">Urbana</span><span class="p">}</span>
+<span class="m">0.8214097</span><span class="w"> </span><span class="m">0.8744000</span><span class="w"> </span><span class="m">0.9393981</span><span class="w"> </span><span class="m">1.0045790</span><span class="w"> </span><span class="m">113679</span>
+
+<span class="p">{</span><span class="n">Ed_Asistio_Preprimaria</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="w"> </span><span class="n">Sc_Electricidad</span><span class="o">=</span><span class="n">Si</span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Logro_Mate</span><span class="o">=</span><span class="n">No</span><span class="w"> </span><span class="n">Logro</span><span class="p">}</span><span class="w"> </span>
+<span class="m">0.7404964</span><span class="w"> </span><span class="m">0.8933765</span><span class="w"> </span><span class="m">0.8288739</span><span class="w"> </span><span class="m">0.9922223</span><span class="w"> </span><span class="m">102481</span>
+</pre></div>
+</div>
+<p>Reglas como las mostradas arriba son las que indican mayor soporte el conjunto de datos para el año 2023, sabiendo que la mayoría de los estudiantes evaluados están ubicados en la región metropolitana o en una área urbana es de esperarse que la mayoría cuente con servicios básicos como la electricidad. La siguiente una asociación un poco inesperada sobre haber cursado preprimaria y la falla en la prueba en matemáticas. Debido al alto porcentaje de fallo en la prueba (90%) no se puede afirma con certeza y habría que realizar mas análisis en esa dirección pero se podría hacer la observación de que haber la iniciado vida estudiantil a temprana edad no refleja un mejor resultado en la evaluación.</p>
+</li>
+<li><p><strong>Regla 2</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Año 2023</span>
+<span class="p">{</span><span class="n">Ed_Asistio_Preprimaria</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="n">Sc_Electricidad</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="n">Computadora</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span>
+<span class="n">Cod_Area</span><span class="o">=</span><span class="n">Urbana</span><span class="p">,</span><span class="w"> </span><span class="n">Sc_Servicio_Internet</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="n">Grad_Seguir_Estudiando</span><span class="o">=</span><span class="n">SI</span><span class="p">}</span><span class="w"> </span>
+<span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Logro_Mate</span><span class="o">=</span><span class="n">No</span><span class="w"> </span><span class="n">Logro</span><span class="p">}</span><span class="w"> </span>
+<span class="m">0.3256259</span><span class="w"> </span><span class="m">0.8412515</span><span class="w"> </span><span class="m">0.3870732</span><span class="w"> </span><span class="m">0.9343300</span><span class="w"> </span><span class="m">4506</span>
+</pre></div>
+</div>
+<p>Entre las reglas que asocian una mayor cantidad de variables pero con menos soporte, se muestra esta regla con un conjunto de variables que se podría pensar estaría asociadas a un mejor resultado pero mas bien están asociadas a un resultado negativo. Nos muestra que una parte de los estudiantes a pesar de contar con algunos recursos tecnológicos (computadora, acceso a internet) y con la intención de continuar sus estudios obtuvieron un resultado negativo.</p>
+</li>
+<li><p><strong>Regla 3</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">Ed_Asistio_Preprimaria</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="w"> </span><span class="n">Computadora</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="w"> </span><span class="n">Sc_Servicio_Internet</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span>
+<span class="n">Grad_Seguir_Estudiando</span><span class="o">=</span><span class="n">SI</span><span class="p">,</span><span class="w"> </span><span class="n">Lectura_Gusto</span><span class="o">=</span><span class="n">Si</span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Cod_Area</span><span class="o">=</span><span class="n">Urbana</span><span class="p">}</span>
+<span class="m">0.3474337</span><span class="w"> </span><span class="m">0.8832192</span><span class="w"> </span><span class="m">0.3933720</span><span class="w"> </span><span class="m">1.0648264</span><span class="w"> </span><span class="m">2579</span>
+</pre></div>
+</div>
+<p>Al filtrar los datos para el sector <em>Oficial</em> (Estatal) y para buscar asociaciones dentro del grupo de alumnos que aprobó el examen de lectura resalta la asociaciones sobre el area del establecimiento, como la mostrada que no indica que sabiendo que el estudiante logró aprobar la evaluación de lectura, con acceso a algunos recursos tecnológicos y con la intención de seguir estudiante pertenece al área urbana.</p>
+</li>
+<li><p><strong>Regla 4</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">Logro_Lect</span><span class="o">=</span><span class="n">Logro</span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Computadora</span><span class="o">=</span><span class="n">Si</span><span class="p">}</span><span class="w"> </span>
+<span class="m">0.6850520</span><span class="w"> </span><span class="m">0.8561439</span><span class="w"> </span><span class="m">0.8001599</span><span class="w"> </span><span class="m">1.0418638</span><span class="w"> </span><span class="m">857</span>
+
+<span class="p">{</span><span class="n">Computadora</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="n">Cod_Area</span><span class="o">=</span><span class="n">Urbana</span><span class="p">,</span><span class="n">Sc_Servicio_Internet</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span>
+<span class="n">Grad_Seguir_Estudiando</span><span class="o">=</span><span class="n">SI</span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Logro_Lect</span><span class="o">=</span><span class="n">Logro</span><span class="p">}</span>
+<span class="m">0.4700240</span><span class="w"> </span><span class="m">0.8724036</span><span class="w"> </span><span class="m">0.5387690</span><span class="w"> </span><span class="m">1.0902866</span><span class="w"> </span><span class="m">588</span>
+</pre></div>
+</div>
+<p>Buscando relaciones con los estudiantes que ganaron la prueba de matemática y pertenecen al sector <em>Oficial</em> se puede ver como el acceso a la tecnología pueda favorecer obtener un buen resultado en la prueba, también que en general los estudiantes que obtuvieron un buen resultado en matemática también lo hicieron en lectura pero esta asociación no existe en la otra dirección.</p>
+</li>
+</ul>
+</section>
+<section id="fp-growth">
+<h2>FP-Growth<a class="headerlink" href="#fp-growth" title="Link to this heading">#</a></h2>
+<p>Al igual que sucede con el algoritmo apriori las reglas obtenidas con FP-Growth que tienen un mayor confianza y soporte son evidente o aportan poca información adicional.</p>
+<ul>
+<li><p><strong>Regla 1</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">Logro_Lect</span><span class="o">=</span><span class="n">No</span><span class="w"> </span><span class="n">Logro</span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Logro_Mate</span><span class="o">=</span><span class="n">No</span><span class="w"> </span><span class="n">Logro</span><span class="p">}</span>
+<span class="m">0.6672640</span><span class="w"> </span><span class="m">0.9757402</span><span class="w"> </span><span class="m">1.0836990</span><span class="w"> </span><span class="m">92346</span><span class="w"> </span><span class="m">1026</span>
+</pre></div>
+</div>
+<p>Esta regla muestra como hay asociaciones entre fallar las pruebas, parece implicar que si un alumno no es capaz de aprobar la prueba de lectura seguramente falle en la de matemáticas. Los datos muestran como hay un porcentaje de probación mas alto en la prueba de lectura, podría indicar que aprobar esta prueba es más fácil que la de matemáticas.</p>
+</li>
+<li><p><strong>Regla 2</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">Ed_Asistio_Preprimaria</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="w"> </span><span class="n">Cod_Sector</span><span class="o">=</span><span class="n">Privado</span><span class="p">,</span>
+<span class="n">CC_Material_Predomina_En_Piso_Casa</span><span class="o">=</span><span class="n">Piso</span><span class="w"> </span><span class="n">cerámico</span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Cod_Area</span><span class="o">=</span><span class="n">Urbana</span><span class="p">}</span>
+<span class="m">0.3630333</span><span class="w"> </span><span class="m">0.9225317</span><span class="w"> </span><span class="m">1.0598765</span><span class="w"> </span><span class="m">50242</span>
+</pre></div>
+</div>
+<p>Con datos sin segmentar se encuentra esta asociación. Se sabe que la mayoría de los estudiantes que se someten a la evaluación pertenecen al sector privado y con uns cuantas condiciones adicionales en general su establecimiento se encuentra ubicando en un área urbana. Dentro de la gran cantidad de reglas que muestra FP-Growth muchas relación las condiciones de los estudiantes con el sector privado y el área urbana indicando que existe poca representación de los otro sectores y del area rural en el conjunto de dato.</p>
+</li>
+<li><p><strong>Regla 3</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="n">Ed_Trabaja_Actualmente</span><span class="o">=</span><span class="n">No</span><span class="p">,</span><span class="n">Sc_Servicio_Internet</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="n">Identificacion_Etnica_RECO</span><span class="o">=</span><span class="n">Ladino</span><span class="p">}</span><span class="w"> </span>
+<span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Ed_Repitio_Algun_Grado</span><span class="o">=</span><span class="n">No</span><span class="p">}</span>
+<span class="m">0.3600970</span><span class="w"> </span><span class="m">0.8129562</span><span class="w"> </span><span class="m">1.0822407</span><span class="w"> </span><span class="m">2673</span>
+</pre></div>
+</div>
+<p>Filtrando  los datos, tomando solo estudiantes que aprobaron lectura y pertenecen al sector <strong>oficial</strong>, surge la asociación que nos indica con un soporte  bajo que si un estudian aprueba el examen de lectura y además cuenta con unos recursos mínimos (económicos y tecnológicos) seguramente nunca repitió un año escolar.</p>
+</li>
+<li><p><strong>Regla 4</strong></p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="p">{</span><span class="n">Logro_Lect</span><span class="o">=</span><span class="n">Logro</span><span class="p">,</span><span class="n">Ed_Asistio_Preprimaria</span><span class="o">=</span><span class="n">Si</span><span class="p">,</span><span class="n">Ed_Trabaja_Actualmente</span><span class="o">=</span><span class="n">No</span><span class="p">,</span>
+<span class="n">Computadora</span><span class="o">=</span><span class="n">Si</span><span class="p">}</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="p">{</span><span class="n">Ed_Repitio_Algun_Grado</span><span class="o">=</span><span class="n">No</span><span class="p">}</span>
+<span class="m">0.3501199</span><span class="w"> </span><span class="m">0.8358779</span><span class="w"> </span><span class="m">1.0995617</span><span class="w"> </span><span class="m">438</span>
+</pre></div>
+</div>
+<p>Nuevamente esta regl,  como una condición de aprobación  de matemática y pertenencia al sector <strong>Oficial</strong>, nos indica que si un estudiante aprobó ambas evaluaciones y además cuenta con unos recursos mínimos (económicos y tecnológicos) no repitió un año escolar. Estas dos últimas reglas muestra asociación entre  entre la variable de renitencia y la aprobación tanto en la prueba de lectura como en la matemática.</p>
+</li>
+</ul>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="bexploration.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Exploración inicial</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="kmeans.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Agrupación</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#apriori">Apriori</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#fp-growth">FP-Growth</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Milton Rolando Vásquez Hernández
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

@@ -1,0 +1,589 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Exploración inicial</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=c96076fa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/bexploration';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Reglas de asociación" href="reglas.html" />
+    <link rel="prev" title="Proyecto 1" href="../index.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=" - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=" - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Informe de proyecto</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Exploración inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reglas.html">Reglas de asociación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="kmeans.html">Agrupación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propuesta.html">Propuestas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Entorno de trabajo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Entorno de trabajo</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/MiltonVH/dm_project_1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modules/bexploration.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Exploración inicial</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto">Contexto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjunto-de-datos">Conjunto de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-de-interes">Variables de interés</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion">Descripción</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones">Observaciones</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno">Desempeño</a></li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="exploracion-inicial">
+<h1>Exploración inicial<a class="headerlink" href="#exploracion-inicial" title="Link to this heading">#</a></h1>
+<section id="contexto">
+<h2>Contexto<a class="headerlink" href="#contexto" title="Link to this heading">#</a></h2>
+<p>El Ministerio de Educación de Guatemala (MINEDUC)  a través de la Dirección General de Evaluación e Investigación Educativa (DIGEDUCA) realiza anualmente una evaluación a los graduandos de nivel diversificado para medir su rendimiento sus en matemáticas así como en lenguaje y compresión lectora.</p>
+<p>Es una evaluación diagnostica que  deben realizar todos los estudiantes que están por graduarse, tiene objetivo de establecer en que medida los estudiantes lograron alcanzar los objetivos de aprendizaje, recolectar información sobre el estado del sistema educativo de Guatemala e identificar líneas de acción para mejorarlo.</p>
+<p>Durante la pandemia de COVID-19 no fue posible realizar esta evaluación, en su lugar se utilizaron otras herramientas por lo que no hay disponibles datos para los años 2020 y 2021.</p>
+</section>
+<section id="conjunto-de-datos">
+<h2>Conjunto de datos<a class="headerlink" href="#conjunto-de-datos" title="Link to this heading">#</a></h2>
+<p>Los datos pueden ser obtenidos en la sección de <a class="reference external" href="https://edu.mineduc.gob.gt/digeduca/?p=resultadosevaluacionesMain.asp">resultados de las evaluaciones</a> de la página web del MINEDUC, cada conjunto de datos esta disponible por año, en formato <code class="docutils literal notranslate"><span class="pre">.xlsx</span></code>, <code class="docutils literal notranslate"><span class="pre">.xls.</span></code> o <code class="docutils literal notranslate"><span class="pre">.sav</span></code>, junto su diccionario de variables; para esta exploración básica se tomaron los datos de los años 2023, 2022 y 2019.</p>
+<p>Utilizando el lenguaje de programación R se cargaron, limpiaron y serializaron los datos, esto último para recuperarlos de forma más rápida en diferentes scripts. Abajo se muestra la cantidad de registros de cada uno de los <em>datasets</em> que representan la cantidad de estudiantes evaluados ese año.</p>
+<p>Los datos del 2022 difieren en varios aspectos comparado con los otros dos años debido a ser este conjunto al que corresponde a la primera evaluación luego de la pandemia, mas adelante se hablara de esto, pero se pudo ver que este año se cuenta con registros con una sola evaluación matemática o lectura, posiblemente por esto pueda atribuirse a que un grupo de estudiantes se evaluó unicamente en una sola area matemáticas o lectura..</p>
+<div class="highlight-r notranslate"><div class="highlight"><pre><span></span><span class="c1"># Datos 2023</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="s">&quot;Total estudiantes: 144899&quot;</span>
+
+<span class="c1"># DAtos 2022</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="s">&quot;Total estudiantes: 136144&quot;</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="s">&quot;Evaluaciones mate: 135285&quot;</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="s">&quot;Evaluaciones lect: 131358&quot;</span>
+
+<span class="c1"># Datos 2019</span>
+<span class="p">[</span><span class="m">1</span><span class="p">]</span><span class="w"> </span><span class="s">&quot;Total estudiantes: 163825&quot;</span>
+</pre></div>
+</div>
+</section>
+<section id="variables-de-interes">
+<h2>Variables de interés<a class="headerlink" href="#variables-de-interes" title="Link to this heading">#</a></h2>
+<p>Los datos para cada año cuentan con una gran cantidad de variables la gran mayoría categóricas, también difiere el número de variables disponibles el 2023 cuenta con 74, el 2022 con 276 y e 2019 con 185. En el 2022 al realizarse la primera evaluación después la pandemia se agregaron variables asociadas a las condiciones de la educación en ese momento, como por ejemplo la forma de acceder a internet o el uso de plataformas virtuales (Zoom, Google Meet, etc.) es debido a ello la mayor diferencia de variables.</p>
+<p>Debido a la cantidad de datos disponible, que requiere una cantidad de tiempo y recursos considerable si se desean analizar en profundidad, se seleccionaron algunas variables para limitar la cantidad de información.</p>
+<p>Al revisar las descripciones de los datos para cada año se podría clasificar las variables dentro de alguna de las siguientes categorías.</p>
+<ul class="simple">
+<li><p>Identificación (por código de estudiante, establecimientos, etc)</p></li>
+<li><p>Ubicación</p></li>
+<li><p>Aspectos socioeconómicos</p></li>
+<li><p>Aspectos educativos</p></li>
+<li><p>Resultados</p></li>
+</ul>
+<p>A continuación se muestran ejemplos de las variables que conforman los, sobre las que podría encontrarse relaciones para comprender mejor los resultados obtenidos en las evaluaciones. Las variables para aplicar los algoritmos solicitados en el trabajo serán escogidas  por representar de alguna manera las categorías antes mencionadas.</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>Descripción</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Logro_Lect</p></td>
+<td><p>Logro en Lectura</p></td>
+</tr>
+<tr class="row-odd"><td><p>Logro_Mate</p></td>
+<td><p>Logro en Matemáticas</p></td>
+</tr>
+<tr class="row-even"><td><p>Desempeño_Mate</p></td>
+<td><p>Desempeño en Matemáticas</p></td>
+</tr>
+<tr class="row-odd"><td><p>Desempeño_Lect</p></td>
+<td><p>Desempeño en Lectura</p></td>
+</tr>
+<tr class="row-even"><td><p>Cod_Region</p></td>
+<td><p>Código de Región donde se encuentra ubicado el Establecimiento</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jornada</p></td>
+<td><p>Jornada del Establecimiento</p></td>
+</tr>
+<tr class="row-even"><td><p>Cod_Sector</p></td>
+<td><p>Sector del Establecimiento(privado, oficial, …)</p></td>
+</tr>
+<tr class="row-odd"><td><p>CC_Familia_Automovil</p></td>
+<td><p>¿Su familia tiene vehículo propio?</p></td>
+</tr>
+<tr class="row-even"><td><p>Edad_RECO</p></td>
+<td><p>Edad del Estudiante (Recodificada en Intervalos)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sexo_RECO</p></td>
+<td><p>Código Género del Estudiante</p></td>
+</tr>
+<tr class="row-even"><td><p>Cod_Area</p></td>
+<td><p>Código del Área del Establecimiento (urbano, rural)</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fm_Grado_Alcanzo_Papa_RECO</p></td>
+<td><p>Marque el grado más alto que completó su papá.</p></td>
+</tr>
+<tr class="row-even"><td><p>Fm_Grado_Alcanzo_Mama_RECO</p></td>
+<td><p>Marque el grado más alto que completó su mamá.</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ed_Repitio_Algun_Grado</p></td>
+<td><p>¿Repitió algún grado?</p></td>
+</tr>
+<tr class="row-even"><td><p>Sc_Servicio_Internet</p></td>
+<td><p>Servicios que tiene en su casa: Internet</p></td>
+</tr>
+<tr class="row-odd"><td><p>Tipo_Eval</p></td>
+<td><p>Tipo de Evaluación (en línea, presencial)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+<section id="descripcion">
+<h2>Descripción<a class="headerlink" href="#descripcion" title="Link to this heading">#</a></h2>
+<p>Mediante la aplicación de la función <code class="docutils literal notranslate"><span class="pre">summary()</span></code> de R, para describir rápidamente los datos, en este caso se obtienen por consola las tablas de frecuencias para las variables, como se muestra a continuación de forma recordada.</p>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">Cod_Region                       Edad_Reco                CC_Servicio_Internet</span>
+<span class="go">Región 1 o Metropolitana:59512   16 años o Menos :18486   No  :92627</span>
+<span class="go">Región 6 o Suroccidental:35846   17 años         :44933   Si  :70069</span>
+<span class="go">Región 5 o Central      :18572   18 años         :44144   NA&#39;s: 1129</span>
+<span class="go">Región 4 o Suroriental  :12812   19 años         :21464</span>
+<span class="go">Región 3 o Nororiental  :11985   20 años         :10735</span>
+<span class="go">Región 7 o Noroccidental:10766   Mayor de 20 años:24040</span>
+<span class="gp gp-VirtualEnv">(Other)</span>                 <span class="go">:14332   NA&#39;s            :   23</span>
+</pre></div>
+</div>
+<section id="observaciones">
+<h3>Observaciones<a class="headerlink" href="#observaciones" title="Link to this heading">#</a></h3>
+<p>Con las tablas de frecuencia se puede hacer algunas observaciones rápidas sobre la información en distintos años.</p>
+<ul class="simple">
+<li><p>Para los tres años la mayoría de los estudiantes evaluados corresponde a la región Metropolitana.</p></li>
+<li><p>La mayoría de los estudiantes tienen una edad entre 17 y 18 años al momento de graduarse.</p></li>
+<li><p>Para el año 2019 la mayoría de los estudiante indicaron no tener servicio de internet en su casa, esta variable se invierte para los años 2022 y 2023.</p></li>
+<li><p>Para los años 2023 y 2022 la mayoría de los estudiantes evaluados pertenecen al sector privado, también la mayoría para ambos años fuero evaluados en línea. Las variables que indican sector y tipo de evaluación no están presentes en los datos del año 2019.</p></li>
+<li><p>Durante los tres años la mayoría de los estudiante evaluados estudiaron en el sector privado.</p></li>
+</ul>
+</section>
+</section>
+<section id="desempeno">
+<h2>Desempeño<a class="headerlink" href="#desempeno" title="Link to this heading">#</a></h2>
+<p>Debido a que el objetivo de este trabajo es aplicar los los algoritmos mencionados previamente para buscar relaciones en los datos, se hace evidente que la mejor forma de abordarlo es buscando relaciones que expliquen los resultados de desempeño de los estudiantes en la prueba o si se logró aprobar la misma.</p>
+<p>Por ello a continuación en las figuras <a class="reference internal" href="#g2023">1.1</a>, <a class="reference internal" href="#g2022">1.2</a> y <a class="reference internal" href="#g2019">1.3</a> se presentan gráficos de los resultados obtenidos en los tres años para ayudar a orientar la búsqueda de relaciones en la información.</p>
+<figure class="align-center" id="g2023">
+<a class="reference internal image-reference" href="../_images/g2023.png"><img alt="../_images/g2023.png" src="../_images/g2023.png" style="width: 650px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 1. </span><span class="caption-text">Resultados de evaluaciones 2023</span><a class="headerlink" href="#g2023" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>En los tres años se puede observar como la mayoría de estudiantes obtienen resultados insatisfactorios en ambas evaluaciones siendo el porcentaje de aprobación más alto los para lectura que para matemáticas. Se puede observar como el porcentaje de aprobación en lectura decayó del año 2019 al 2022 con la pandemia de por medio y de 2022 al 2023 bajo el porcentaje de aprobación para matemática.</p>
+<figure class="align-center" id="g2022">
+<a class="reference internal image-reference" href="../_images/g2022.png"><img alt="../_images/g2022.png" src="../_images/g2022.png" style="width: 650px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 2. </span><span class="caption-text">Resultados de evaluaciones 2022</span><a class="headerlink" href="#g2022" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<figure class="align-center" id="g2019">
+<a class="reference internal image-reference" href="../_images/g2019.png"><img alt="../_images/g2019.png" src="../_images/g2019.png" style="width: 650px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 3. </span><span class="caption-text">Resultados de evaluaciones 2019</span><a class="headerlink" href="#g2019" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="../index.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Proyecto 1</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="reglas.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Reglas de asociación</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#contexto">Contexto</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#conjunto-de-datos">Conjunto de datos</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#variables-de-interes">Variables de interés</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#descripcion">Descripción</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones">Observaciones</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#desempeno">Desempeño</a></li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Milton Rolando Vásquez Hernández
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>

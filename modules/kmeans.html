@@ -1,0 +1,687 @@
+
+<!DOCTYPE html>
+
+
+<html lang="es" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>Agrupación</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!-- 
+    this give us a css class that will be invisible only if js is disabled 
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=26a4bc78f4c0ddb94549" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=a746c00c" />
+    <link rel="stylesheet" type="text/css" href="../_static/styles/sphinx-book-theme.css?v=a3416100" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../_static/scripts/fontawesome.js?digest=26a4bc78f4c0ddb94549"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549" />
+
+    <script src="../_static/documentation_options.js?v=c96076fa"></script>
+    <script src="../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/scripts/sphinx-book-theme.js?v=887ef09a"></script>
+    <script src="../_static/translations.js?v=f85f4cfb"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'modules/kmeans';</script>
+    <link rel="index" title="Índice" href="../genindex.html" />
+    <link rel="search" title="Búsqueda" href="../search.html" />
+    <link rel="next" title="Propuestas" href="propuesta.html" />
+    <link rel="prev" title="Reglas de asociación" href="reglas.html" />
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <meta name="docsearch:language" content="es"/>
+  <meta name="docsearch:version" content="" />
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search.html"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search..."
+         aria-label="Search..."
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+    
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../index.html">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/logo.png" class="logo__image only-light" alt=" - Home"/>
+    <img src="../_static/logo.png" class="logo__image only-dark pst-js-only" alt=" - Home"/>
+  
+  
+</a></div>
+        <div class="sidebar-primary-item">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Búsqueda</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button></div>
+        <div class="sidebar-primary-item"><nav class="bd-links bd-docs-nav" aria-label="Main">
+    <div class="bd-toc-item navbar-nav active">
+        <p aria-level="2" class="caption" role="heading"><span class="caption-text">Informe de proyecto</span></p>
+<ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="bexploration.html">Exploración inicial</a></li>
+<li class="toctree-l1"><a class="reference internal" href="reglas.html">Reglas de asociación</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Agrupación</a></li>
+<li class="toctree-l1"><a class="reference internal" href="propuesta.html">Propuestas</a></li>
+</ul>
+<p aria-level="2" class="caption" role="heading"><span class="caption-text">Entorno de trabajo</span></p>
+<ul class="nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="documentation.html">Entorno de trabajo</a></li>
+</ul>
+
+    </div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+  
+  <div id="rtd-footer-container"></div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+
+<div class="sbt-scroll-pixel-helper"></div>
+
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item"><button class="sidebar-toggle primary-toggle btn btn-sm" title="Toggle primary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <span class="fa-solid fa-bars"></span>
+</button></div>
+      
+    </div>
+  
+  
+    <div class="header-article-items__end">
+      
+        <div class="header-article-item">
+
+<div class="article-header-buttons">
+
+
+<a href="https://github.com/MiltonVH/dm_project_1" target="_blank"
+   class="btn btn-sm btn-source-repository-button"
+   title="Repositorio de origen"
+   data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fab fa-github"></i>
+  </span>
+
+</a>
+
+
+
+
+
+
+<div class="dropdown dropdown-download-buttons">
+  <button class="btn dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false" aria-label="Descarga esta pagina">
+    <i class="fas fa-download"></i>
+  </button>
+  <ul class="dropdown-menu">
+      
+      
+      
+      <li><a href="../_sources/modules/kmeans.md" target="_blank"
+   class="btn btn-sm btn-download-source-button dropdown-item"
+   title="Descargar archivo fuente"
+   data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file"></i>
+  </span>
+<span class="btn__text-container">.md</span>
+</a>
+</li>
+      
+      
+      
+      
+      <li>
+<button onclick="window.print()"
+  class="btn btn-sm btn-download-pdf-button dropdown-item"
+  title="Imprimir en PDF"
+  data-bs-placement="left" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-file-pdf"></i>
+  </span>
+<span class="btn__text-container">.pdf</span>
+</button>
+</li>
+      
+  </ul>
+</div>
+
+
+
+
+<button onclick="toggleFullScreen()"
+  class="btn btn-sm btn-fullscreen-button"
+  title="Modo de pantalla completa"
+  data-bs-placement="bottom" data-bs-toggle="tooltip"
+>
+  
+
+<span class="btn__icon-container">
+  <i class="fas fa-expand"></i>
+  </span>
+
+</button>
+
+
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button>
+
+
+<button class="btn btn-sm pst-navbar-icon search-button search-button__button pst-js-only" title="Búsqueda" aria-label="Búsqueda" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <i class="fa-solid fa-magnifying-glass fa-lg"></i>
+</button>
+<button class="sidebar-toggle secondary-toggle btn btn-sm" title="Toggle secondary sidebar" data-bs-placement="bottom" data-bs-toggle="tooltip">
+    <span class="fa-solid fa-list"></span>
+</button>
+</div></div>
+      
+    </div>
+  
+</div>
+</div>
+              
+              
+
+<div id="jb-print-docs-body" class="onlyprint">
+    <h1>Agrupación</h1>
+    <!-- Table of contents -->
+    <div id="print-main-content">
+        <div id="jb-print-toc">
+            
+            <div>
+                <h2> Contenido </h2>
+            </div>
+            <nav aria-label="Page">
+                <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means">K - Means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-modes">K - Modes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones">Observaciones</a></li>
+</ul>
+</li>
+</ul>
+            </nav>
+        </div>
+    </div>
+</div>
+
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                  
+  <section id="agrupacion">
+<h1>Agrupación<a class="headerlink" href="#agrupacion" title="Link to this heading">#</a></h1>
+<p>Como en su mayoría las variables con las que cuenta el conjunto de datos son de tipo categórico, preguntas SI /NO o selección de la categoría más cercana,  el algoritmo K-Means no es el más adecuado para generar clústeres, este algoritmo espera tipos de datos numéricos como parámetros de ingreso y se base en calcular la distancia euclidiana entre puntos lo cual no tiene mucho sentido para datos categóricos.</p>
+<section id="k-means">
+<h2>K - Means<a class="headerlink" href="#k-means" title="Link to this heading">#</a></h2>
+<p>En figura <a class="reference internal" href="#gkmeans">4</a> se puede observar una gráfica con las únicas variables numéricas en los datos al aplicar K-Means junto con otras variables (convertidas a enteros) se puede ver que estas formaron clústeres muy cercanos al mismo punto. No es posible obtener mayores conclusiones de esta gráfica mas allá habilidad estimada para la mayoría de estudiante esta cerca del valor cero en ambas materias.</p>
+<figure class="align-center" id="gkmeans">
+<a class="reference internal image-reference" href="../_images/kmeans.png"><img alt="../_images/kmeans.png" src="../_images/kmeans.png" style="width: 320px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 4. </span><span class="caption-text">Agrupación mediante K-Means</span><a class="headerlink" href="#gkmeans" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+</section>
+<section id="k-modes">
+<h2>K - Modes<a class="headerlink" href="#k-modes" title="Link to this heading">#</a></h2>
+<p>Se utilizó el algoritmo K-Modes que esta diseñado para trabajar con datos categóricos ya que utiliza métricas de distancia adecuadas para datos categóricos, este calcula el centroide como el valor más frecuente para cada atributo en el cluster.</p>
+<p>En las figuras <a class="reference internal" href="#gkmodes0">5</a> y <a class="reference internal" href="#gkmodes1">6</a> se puede ver los resultados de K-Modes en la primera se observa como los datos forma un grupo con que contiene a los estudiantes con mejor desempeño con los datos sin segmentar.</p>
+<figure class="align-center" id="gkmodes0">
+<a class="reference internal image-reference" href="../_images/kmodes_0.png"><img alt="../_images/kmodes_0.png" src="../_images/kmodes_0.png" style="width: 550px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 5. </span><span class="caption-text">K-Modes con datos sin segmentar</span><a class="headerlink" href="#gkmodes0" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<p>En la segunda se aplico un filtro para utilizar solamente los datos de los estudiante que ganaron alguna de las evaluaciones (logro en mate o en lectura) se puede ver como los datos nuevamente logran separar a los estudiantes con los mejores resultados.</p>
+<figure class="align-center" id="gkmodes1">
+<a class="reference internal image-reference" href="../_images/kmodes_1.png"><img alt="../_images/kmodes_1.png" src="../_images/kmodes_1.png" style="width: 550px;" />
+</a>
+<figcaption>
+<p><span class="caption-number">Fig. 6. </span><span class="caption-text">K-Modes con estudiantes que obtuvieron al menos un logro</span><a class="headerlink" href="#gkmodes1" title="Link to this image">#</a></p>
+</figcaption>
+</figure>
+<section id="observaciones">
+<h3>Observaciones<a class="headerlink" href="#observaciones" title="Link to this heading">#</a></h3>
+<p>Al observar la tabla <a class="reference internal" href="#tabla-1">1</a> que muestra los cinco modos que fue capas de encontrar el algoritmo sobre la los datos, se puede hacer algunas observaciones como:</p>
+<ul class="simple">
+<li><p>Los estudiantes con obtiene resultados tienden a tener padres con educación (diversificada o universitaria).</p></li>
+<li><p>Los estudiantes que logran aprobar ambos evaluaciones tienden a indicar que cuenta con cinco periodos de clase en ambas materias a la semana.</p></li>
+<li><p>Por lo general los estudiantes que aprueban alguna evaluación están ubicando en la Ciudad Capital. \</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table" id="tabla-1">
+<caption><span class="caption-number">Tabla 1. </span><span class="caption-text">Agrupaciones de estudiantes que obtuvieron al menos un logro</span><a class="headerlink" href="#tabla-1" title="Link to this table">#</a></caption>
+<thead>
+<tr class="row-odd"><th class="head"><p>Variable</p></th>
+<th class="head"><p>g1</p></th>
+<th class="head"><p>g2</p></th>
+<th class="head"><p>g3</p></th>
+<th class="head"><p>g4</p></th>
+<th class="head"><p>g5</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Logro_Mate</p></td>
+<td><p>Logro</p></td>
+<td><p>Logro</p></td>
+<td><p>Logro</p></td>
+<td><p>No Logro</p></td>
+<td><p>No Logro</p></td>
+</tr>
+<tr class="row-odd"><td><p>Logro_Lect</p></td>
+<td><p>Logro</p></td>
+<td><p>Logro</p></td>
+<td><p>No Logro</p></td>
+<td><p>Logro</p></td>
+<td><p>Logro</p></td>
+</tr>
+<tr class="row-even"><td><p>Ed_Asistio_Preprimaria</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+</tr>
+<tr class="row-odd"><td><p>Sc_Electricidad</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+</tr>
+<tr class="row-even"><td><p>Desempeño_Mate</p></td>
+<td><p>Excelente</p></td>
+<td><p>Excelente</p></td>
+<td><p>Satisfactorio</p></td>
+<td><p>Insatisfactorio</p></td>
+<td><p>Debe Mejorar</p></td>
+</tr>
+<tr class="row-odd"><td><p>Desempeño_Lect</p></td>
+<td><p>Excelente</p></td>
+<td><p>Excelente</p></td>
+<td><p>Debe Mejorar</p></td>
+<td><p>Excelente</p></td>
+<td><p>Satisfactorio</p></td>
+</tr>
+<tr class="row-even"><td><p>Cod_Depa</p></td>
+<td><p>Ciudad Capital</p></td>
+<td><p>Ciudad Capital</p></td>
+<td><p>Ciudad Capital</p></td>
+<td><p>Guatemala</p></td>
+<td><p>Ciudad Capital</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lect_Periodos_Lectura_Semana</p></td>
+<td><p>5 Períodos</p></td>
+<td><p>Ninguno</p></td>
+<td><p>1 Período</p></td>
+<td><p>Ninguno</p></td>
+<td><p>Ninguno</p></td>
+</tr>
+<tr class="row-even"><td><p>Mate_Periodos_Matematicas_Semana</p></td>
+<td><p>Cinco periodos</p></td>
+<td><p>Cuatro periodos</p></td>
+<td><p>Cinco periodos</p></td>
+<td><p>Ninguno</p></td>
+<td><p>Cinco periodos</p></td>
+</tr>
+<tr class="row-odd"><td><p>Jornada</p></td>
+<td><p>Matutina</p></td>
+<td><p>Matutina</p></td>
+<td><p>Matutina</p></td>
+<td><p>Vespertina</p></td>
+<td><p>Matutina</p></td>
+</tr>
+<tr class="row-even"><td><p>Ed_Trabaja_Actualmente</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cod_Sector</p></td>
+<td><p>Privado</p></td>
+<td><p>Privado</p></td>
+<td><p>Privado</p></td>
+<td><p>Privado</p></td>
+<td><p>Privado</p></td>
+</tr>
+<tr class="row-even"><td><p>CC_Material_Predomina_En_Piso_Casa</p></td>
+<td><p>Piso cerámico</p></td>
+<td><p>Torta de cemento</p></td>
+<td><p>Piso cerámico</p></td>
+<td><p>Torta de cemento</p></td>
+<td><p>Piso cerámico</p></td>
+</tr>
+<tr class="row-odd"><td><p>Computadora</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+</tr>
+<tr class="row-even"><td><p>CC_Familia_Automovil</p></td>
+<td><p>Si</p></td>
+<td><p>No</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+</tr>
+<tr class="row-odd"><td><p>Edad_RECO</p></td>
+<td><p>17 años</p></td>
+<td><p>18 años</p></td>
+<td><p>17 años</p></td>
+<td><p>18 años</p></td>
+<td><p>17 años</p></td>
+</tr>
+<tr class="row-even"><td><p>Sexo_RECO</p></td>
+<td><p>Masculino</p></td>
+<td><p>Femenino</p></td>
+<td><p>Masculino</p></td>
+<td><p>Femenino</p></td>
+<td><p>Masculino</p></td>
+</tr>
+<tr class="row-odd"><td><p>Cod_Area</p></td>
+<td><p>Urbana</p></td>
+<td><p>Urbana</p></td>
+<td><p>Urbana</p></td>
+<td><p>Urbana</p></td>
+<td><p>Urbana</p></td>
+</tr>
+<tr class="row-even"><td><p>Sc_Servicio_Internet</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+</tr>
+<tr class="row-odd"><td><p>Fm_Grado_Alcanzo_Papa_RECO</p></td>
+<td><p>Universidad o más</p></td>
+<td><p>Diversificado</p></td>
+<td><p>Primaria</p></td>
+<td><p>Primaria</p></td>
+<td><p>Universidad o más</p></td>
+</tr>
+<tr class="row-even"><td><p>Fm_Grado_Alcanzo_Mama_RECO</p></td>
+<td><p>Diversificado</p></td>
+<td><p>Primaria</p></td>
+<td><p>Primaria</p></td>
+<td><p>Primaria</p></td>
+<td><p>Universidad o más</p></td>
+</tr>
+<tr class="row-odd"><td><p>Grad_Trabajar</p></td>
+<td><p>SI</p></td>
+<td><p>SI</p></td>
+<td><p>SI</p></td>
+<td><p>SI</p></td>
+<td><p>SI</p></td>
+</tr>
+<tr class="row-even"><td><p>Grad_Seguir_Estudiando</p></td>
+<td><p>SI</p></td>
+<td><p>SI</p></td>
+<td><p>SI</p></td>
+<td><p>SI</p></td>
+<td><p>SI</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lectura_Gusto</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+<td><p>Si</p></td>
+</tr>
+<tr class="row-even"><td><p>Identificacion_Etnica_RECO</p></td>
+<td><p>Ladino</p></td>
+<td><p>Ladino</p></td>
+<td><p>Ladino</p></td>
+<td><p>Ladino</p></td>
+<td><p>Ladino</p></td>
+</tr>
+<tr class="row-odd"><td><p>Lect_Libros_Completos_Ha_Leido</p></td>
+<td><p>Dos libros</p></td>
+<td><p>Dos libros</p></td>
+<td><p>Un libro</p></td>
+<td><p>Un libro</p></td>
+<td><p>Dos libros</p></td>
+</tr>
+<tr class="row-even"><td><p>Tipo_Eval</p></td>
+<td><p>Linea</p></td>
+<td><p>Linea</p></td>
+<td><p>Linea</p></td>
+<td><p>Linea</p></td>
+<td><p>Linea</p></td>
+</tr>
+<tr class="row-odd"><td><p>Ed_Repitio_Algun_Grado</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+<td><p>No</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</section>
+</section>
+</section>
+
+
+                </article>
+              
+
+              
+              
+              
+              
+                <footer class="prev-next-footer d-print-none">
+                  
+<div class="prev-next-area">
+    <a class="left-prev"
+       href="reglas.html"
+       title="previous page">
+      <i class="fa-solid fa-angle-left"></i>
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">anterior</p>
+        <p class="prev-next-title">Reglas de asociación</p>
+      </div>
+    </a>
+    <a class="right-next"
+       href="propuesta.html"
+       title="next page">
+      <div class="prev-next-info">
+        <p class="prev-next-subtitle">siguiente</p>
+        <p class="prev-next-title">Propuestas</p>
+      </div>
+      <i class="fa-solid fa-angle-right"></i>
+    </a>
+</div>
+                </footer>
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">
+  <div class="page-toc tocsection onthispage">
+    <i class="fa-solid fa-list"></i> Contenido
+  </div>
+  <nav class="bd-toc-nav page-toc">
+    <ul class="visible nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-means">K - Means</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#k-modes">K - Modes</a><ul class="visible nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#observaciones">Observaciones</a></li>
+</ul>
+</li>
+</ul>
+  </nav></div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+<div class="bd-footer-content__inner container">
+  
+  <div class="footer-item">
+    
+<p class="component-author">
+Por Milton Rolando Vásquez Hernández
+</p>
+
+  </div>
+  
+  <div class="footer-item">
+    
+
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+  <div class="footer-item">
+    
+  </div>
+  
+</div>
+          </footer>
+        
+
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=26a4bc78f4c0ddb94549"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=26a4bc78f4c0ddb94549"></script>
+
+  <footer class="bd-footer">
+  </footer>
+  </body>
+</html>
